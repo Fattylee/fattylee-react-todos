@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const TodoItem = ({ todo: {content, id}, deleteTodo }) => {
+const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
   return (
      <li className="collection-item">
-       <div>{content}
+       <div>{`${counter}. ${content}`}
        <a 
        onClick={() => {
          deleteTodo(id);
