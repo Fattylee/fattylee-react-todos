@@ -9,23 +9,28 @@ class Todo extends Component {
       { id: 2, content: 'visit a shopping mall' },
     ],
   }
+  deleteTodo = (id) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.filter(({id: todoId}) => id != todoId),
+    }));
+  }
   render () {
     return (
       <Fragment>
-      <div class='container'>
-        <h1>World best Todo App</h1>
+      <div className='container'>
+        <h1>W<i className='material-icons h1-icon'>insert_emoticon</i>rld best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium'>insert_emoticon</i></h1>
         <form>
         <div className="input-field"> 
           <input type='text' id='content' name='content'  />
-           <label for="content">Todo</label> 
+           <label htmlFor="content">Todo</label> 
           </div>
           <div className="input-field"> 
             <input  id="first_name" type="text" className="validate" /> 
-            <label for="first_name">First Name</label> 
+            <label htmlFor="first_name">First Name</label> 
             </div>
-          <button>Submit</button>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit <i class="material-icons right">send</i> </button>
         </form>
-         <TodoList todos={this.state.todos} />
+         <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo}/>
         </div>
       </Fragment>
     )

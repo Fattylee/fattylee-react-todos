@@ -1,10 +1,15 @@
 import React from 'react';
 
 
-const TodoItem = ({ content }) => {
+const TodoItem = ({ todo: {content, id}, deleteTodo }) => {
   return (
-     <li class="collection-item">
-       <div>{content}<a class="secondary-content"><i class="material-icons">face</i></a></div></li>
+     <li className="collection-item">
+       <div>{content}
+       <a 
+       onClick={() => {
+         deleteTodo(id);
+       }}
+       className="secondary-content pointer"><i className="material-icons">delete</i></a></div></li>
     )
 }
 
