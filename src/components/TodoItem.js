@@ -4,7 +4,7 @@ import React from 'react';
 const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
   return (
      <li className="collection-item">
-       <div>{`${counter}. ${content}`}
+       <div><span className='bold'>{counter}</span>. {content}
        <a 
        onClick={() => {
          deleteTodo(id);
@@ -14,3 +14,4 @@ const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
 }
 
 export default TodoItem;
+
