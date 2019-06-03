@@ -4,7 +4,7 @@ import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import FilterTodo from './FilterTodo';
 
-let _filterLength = -1;
+
 class Todo extends Component {
   
   state = {
@@ -13,7 +13,6 @@ class Todo extends Component {
       { id: '2', content: 'visit a shopping mall' },
     ],
     searchWord: '',
-    
   }
   deleteTodo = (id) => {
     this.setState((prevState) => ({
@@ -33,17 +32,40 @@ class Todo extends Component {
       searchWord,
     }));
   }
-  
+  clearFilter = (e) => {
+    e.target.value = '';
+    this.setState(prevState => ({
+      searchWord: '',
+    }))
+  }
+  onFocus = (e) => {
+    
+   e.target.nextElementSibling.nextElementSibling.classList.add('visibleCounter'); 
+    
+  }
+  onBlur = (e) => {
+     e.target.nextElementSibling.nextElementSibling.classList.remove('visibleCounter');
+  }
   render () {
     const filteredTodos = this.state.todos.filter(({content}) => content.toLowerCase().includes(this.state.searchWord.toLowerCase()) );
     
     return (
       <Fragment>
       <div className='container'>
-        <h1>W<i className='material-icons h1-icon'>insert_emoticon</i>rld best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium'>insert_emoticon</i></h1>
+        <h1 className='center-align title-h1'>W<i className='material-icons h1-icon'>insert_emoticon</i>rld best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium bounce'>insert_emoticon</i></h1>
        
          <AddTodo addTodo={this.addTodo}/>
-         <FilterTodo filterTodo={this.filterTodo}/>
+         
+         <FilterTodo 
+         filterTodo={this.filterTodo} 
+         clearFilter={this.clearFilter} 
+         searchWord={this.state.searchWord}
+         matchCount={filteredTodos.length} 
+         onFocus={this.onFocus}
+         onBlur={this.onBlur}
+         
+         />
+         
          <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo}/>
         
         </div>

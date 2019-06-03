@@ -1,0 +1,27 @@
+.clear, .search-counter {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  color: teal;
+  cursor: pointer;
+}
+
+@square: 30px;
+.search-counter {
+  right: 30px;
+  top: -4px;
+  width: @square;
+  height: @square;
+  background: grey;
+  color: white;
+  line-height: @square;
+  text-align: center;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.visibleCounter {
+  opacity: 1;
+}
+
