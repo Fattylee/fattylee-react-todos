@@ -2,12 +2,13 @@
   "name": "fattylee-react-todos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "homepage" : "http://fattylee.github.io/fattylee-react-todos",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "publish": "gh-pages -D public"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "autoprefixer": "7.1.6",
