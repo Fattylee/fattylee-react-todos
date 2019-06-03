@@ -34,6 +34,7 @@ class AddTodo extends Component {
          <i className="material-icons prefix">mode_edit</i>
           <input type='text' id='content' name='content'  value={this.state.content}
           onChange={this.handleChange}
+          
           />
            <label htmlFor="content">Add Todo</label>
            <span 
