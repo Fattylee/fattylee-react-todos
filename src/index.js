@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Todo from './components/Todo';
+import MyRouter from './components/router';
 import './styles/index.less';
 
-ReactDOM.render(<Todo />, document.getElementById('root'));
+ReactDOM.render(<MyRouter />, document.getElementById('root'));

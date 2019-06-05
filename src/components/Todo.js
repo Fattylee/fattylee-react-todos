@@ -73,8 +73,9 @@ class Todo extends Component {
     
     return (
       <Fragment>
-      <div className='container'>
-        <h1 className='center-align title-h1'>W<i className='material-icons h1-icon'>insert_emoticon</i>rld best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium bounce'>insert_emoticon</i></h1>
+      
+      <div className='central container'>
+        <h1 className='center-align title-h1'>W<i className='material-icons h1-icon'>insert_emoticon</i>rld Best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium bounce'>insert_emoticon</i></h1>
        
          <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo}/>
          <AddTodo addTodo={this.addTodo}/>
