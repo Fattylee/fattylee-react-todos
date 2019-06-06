@@ -2,10 +2,11 @@ import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 //import $ from '../../public/js/jquery-3.2.1.slim.min.js';
 
+
 const NavBar = (props) => {
   return (
     <Fragment>
-    <div class="navbar-fixed openSearchBox">
+    <div className="navbar-fixed openSearchBox">
       <nav>
       <div className="nav-wrapper teal">
         <div className='container'>
@@ -30,16 +31,23 @@ const NavBar = (props) => {
           <li><Link to="/about">About</Link></li>
           <li><Link to='/todo'>Todo</Link></li>
           <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/post/34">Post-34</Link></li>
         </ul>
         
     </Fragment>
   ) 
 };
 
-const openSearchBox = () => {
- 
+const openSearchBox = (e) => {
+
+ console.log('NavBar');
  const openSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
  openSearchBoxElement.forEach(e => e.style.visibility = 'hidden');
-}
+ 
+ const tb = document.querySelector('.pos-form-filter').firstElementChild;
+ tb.setAttribute('autoFocus', true);
+ console.log(tb)
+};
+
 
 export default NavBar;

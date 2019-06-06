@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const FullPost = ({posts}) => {
   console.log('*****FullPost Comp', posts );
-  const { title, body, id } = posts;
+  const { title, body, } = posts;
   return (
     <Fragment>
       <div className='card'>
@@ -19,5 +19,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts,
   }
-}
+};
+
 export default connect(mapStateToProps)(FullPost);

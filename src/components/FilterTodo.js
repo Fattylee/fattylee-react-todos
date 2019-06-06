@@ -18,6 +18,7 @@ const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, o
           onFocus={onFocus}
           onBlur={onBlur}
           className='text-field-width'
+          
           />
            <label htmlFor="filter">Search Todo</label>
            <span className='search-counter '>{matchCount}</span>

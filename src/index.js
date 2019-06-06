@@ -20,7 +20,7 @@ const postsReducer = (state=initState, action) => {
 const store = createStore(postsReducer);
 store.subscribe(() => {
   const state = store.getState();
-  console.log(state);
+  console.log('index.js', state);
 });
 
 store.dispatch({type: 'GET_STATE', });
