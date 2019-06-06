@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 
-const Post = ({post: { title, body, id }}) => {
+const FullPost = ({post: { title, body, id }}) => {
   return (
     <Fragment>
       <div className='card'>
@@ -14,4 +14,4 @@ const Post = ({post: { title, body, id }}) => {
   ) 
 }
 
-export default Post;
+export default FullPost;

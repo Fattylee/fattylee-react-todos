@@ -21,7 +21,7 @@ const NavBar = (props) => {
       </div>
       </nav>
       
-      <ul id="mobile-demo" className="sidenav">
+      <ul id="mobile-demo" className="sidenav amber darken-2">
           <li><Link to="/posts">Posts</Link></li>
           <li><Link to="add-post">AddPost</Link></li>
           <li><Link to="/about">About</Link></li>

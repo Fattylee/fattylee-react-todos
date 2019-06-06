@@ -6,7 +6,9 @@ import Todo from './Todo';
 import Posts from './Posts';
 import Post from './Post';
 import About from './About';
+import Contact from './Contact';
 import NotFound from './NotFound';
+import FullPost from './FullPost';
 
 
 const MyRoute = (props) => {
@@ -14,18 +16,21 @@ const MyRoute = (props) => {
     <Router>
       <Fragment>
         <NavBar />
+        <div className='container'>
         <Switch>
-        <Route exact path='/' component={Todo} />
-        <Route path='/posts/:id' component={Post} />
-        <Route  path='/posts' component={Posts} />
-        <Route  path='/add-post' component={Post} />
+        
+        <Route exact path='/' component={Posts} />
+        <Route path='/post/:id' component={FullPost} />
+        <Route  path='/todo' component={Todo} />
         <Route  path='/about' component={About} />
+        <Route  path='/contact' component={Contact} />
         <Route component={NotFound}/>
+       
         </Switch>
+         </div>
       </Fragment>
     </Router>
   ) 
 }
 
 export default MyRoute;
-
