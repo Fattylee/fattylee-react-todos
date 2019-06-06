@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-const FullPost = ({posts}) => {
-  console.log('*****FullPost Comp', posts );
-  const { title, body, } = posts;
+const FullPost = (props) => {
+  console.log('*****FullPost Comp', props );
+  const { title, body, } = props.state.posts;
   return (
     <Fragment>
       <div className='card'>
@@ -15,9 +15,9 @@ const FullPost = ({posts}) => {
     </Fragment>
   ) 
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (prevState, ownProps) => {
   return {
-    posts: state.posts,
+    state: prevState,
   }
 };
 

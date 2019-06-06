@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import uuid from 'uuid';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import FilterTodo from './FilterTodo';
+import { showSearchBtn, hideSearchBtn } from '../actions/todoActions';
 
 
 class Todo extends Component {
@@ -60,6 +62,13 @@ class Todo extends Component {
       const todosStringified = JSON.stringify(todos);
       ls.setItem('todos', todosStringified);
     }
+    const { showSearchBtn } = this.props;
+    showSearchBtn();
+  }
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    const { hideSearchBtn } = this.props;
+    hideSearchBtn();
   }
   componentDidUpdate(prevProp, prevState) {
     const ls = window.localStorage;
@@ -80,21 +89,27 @@ class Todo extends Component {
          <AddTodo addTodo={this.addTodo}/>
          
          <FilterTodo 
-         filterTodo={this.filterTodo} 
-         clearFilter={this.clearFilter} 
-         searchWord={this.state.searchWord}
-         matchCount={filteredTodos.length} 
-         onFocus={this.onFocus}
-         onBlur={this.onBlur}
-         
+           filterTodo={this.filterTodo} 
+           clearFilter={this.clearFilter} 
+           searchWord={this.state.searchWord}
+           matchCount={filteredTodos.length} 
+           onFocus={this.onFocus}
+           onBlur={this.onBlur}
          />
          
-         
-        <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo}/>
+         <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo} />
         </div>
       </Fragment>
     )
   }
 }
 
-export default Todo;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showSearchBtn() { dispatch(showSearchBtn()) },
+    hideSearchBtn() { dispatch(hideSearchBtn()) },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Todo);
+

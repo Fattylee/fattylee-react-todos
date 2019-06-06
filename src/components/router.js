@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import store from '../stores/store';
 
 import NavBar from './NavBar';
 import Todo from './Todo';
@@ -14,6 +15,7 @@ import FullPost from './FullPost';
 
 const MyRoute = () => {
   return (
+  <Provider store={store}>
     <Router>
       <Fragment>
         <NavBar />
@@ -31,6 +33,7 @@ const MyRoute = () => {
          </div>
       </Fragment>
     </Router>
+    </Provider>
   ) 
   
 }

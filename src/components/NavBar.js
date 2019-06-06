@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 //import $ from '../../public/js/jquery-3.2.1.slim.min.js';
 
 
-const NavBar = (props) => {
+const NavBar = ({state}) => {
+  const searchLink = state.searchBtn && <Link onClick={openSearchBox} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
   return (
     <Fragment>
     <div className="navbar-fixed openSearchBox">
@@ -13,7 +15,7 @@ const NavBar = (props) => {
       <Link to="/" className="brand-logo nav-brand center">Todo</Link>
       
       <Link to="#" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up"><i className="material-icons">menu</i></Link>
-       <Link onClick={openSearchBox} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
+      { searchLink }
       
         <ul className="right hide-on-small-only">
           <li><Link to="/">Home</Link></li>
@@ -49,5 +51,11 @@ const openSearchBox = (e) => {
  console.log(tb)
 };
 
+const mapStateToProps = (prevState, ownProps) => {
+  return {
+    state: prevState
+  }
+}
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);
+
