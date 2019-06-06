@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
-
-const FullPost = ({post: { title, body, id }}) => {
+const FullPost = ({posts}) => {
+  console.log('*****FullPost Comp', posts );
+  const { title, body, id } = posts;
   return (
     <Fragment>
       <div className='card'>
@@ -13,5 +15,9 @@ const FullPost = ({post: { title, body, id }}) => {
     </Fragment>
   ) 
 }
-
-export default FullPost;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    posts: state.posts,
+  }
+}
+export default connect(mapStateToProps)(FullPost);

@@ -3,10 +3,10 @@ import {  Link, } from 'react-router-dom';
 
 
 const NotFound = (props) => {
-  console.log(props)
   return (
     <Fragment>
-      <h1>NotFound Component <Link to='/'>Go home</Link></h1>
+      <h3>404 Page</h3>
+      <p>The requested page was <span className='red-text'>not found</span> <Link to='/' className='btn orange'>Go home <i className='material-icons right'>arrow_forward</i></Link></p>
     </Fragment>
   ) 
 }

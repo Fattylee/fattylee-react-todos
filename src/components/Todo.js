@@ -76,8 +76,7 @@ class Todo extends Component {
       
       <div className='central container'>
         <h1 className='center-align title-h1'>W<i className='material-icons h1-icon'>insert_emoticon</i>rld Best T<i className='material-icons h1-icon'>insert_emoticon</i>d<i className='material-icons h1-icon'>insert_emoticon</i> App <i className='material-icons medium bounce'>insert_emoticon</i></h1>
-       
-         <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo}/>
+         
          <AddTodo addTodo={this.addTodo}/>
          
          <FilterTodo 
@@ -89,7 +88,8 @@ class Todo extends Component {
          onBlur={this.onBlur}
          
          />
-        
+         
+        <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo}/>
         </div>
       </Fragment>
     )

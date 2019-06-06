@@ -12,20 +12,20 @@ const NavBar = (props) => {
       <Link to="#" data-target="mobile-demo" className="sidenav-trigger hide-on-med-and-up"><i className="material-icons">menu</i></Link>
       
         <ul className="right hide-on-small-only">
-          <li><Link to="/posts">Posts</Link></li>
-          <li><Link to="add-post">AddPost</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
-          <li><Link to='/posts/3'>Single-Post</Link></li>
+          <li><Link to='/todo'>Todo</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
       </div>
       </div>
       </nav>
       
       <ul id="mobile-demo" className="sidenav amber darken-2">
-          <li><Link to="/posts">Posts</Link></li>
-          <li><Link to="add-post">AddPost</Link></li>
+          <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
-          <li><Link to='/posts/3'>Single-Post</Link></li>
+          <li><Link to='/todo'>Todo</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
         
     </Fragment>
@@ -33,4 +33,3 @@ const NavBar = (props) => {
 }
 
 export default NavBar;
-

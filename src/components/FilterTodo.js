@@ -4,7 +4,6 @@ import React, { Fragment } from 'react';
 const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur }) => {
     return (
       <Fragment>
-        <h5>Filter Todo</h5>
         <div className="input-field">
          <i className="material-icons prefix">mode_edit</i>
           <input 
@@ -15,6 +14,7 @@ const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, o
           onChange={filterTodo}
           onFocus={onFocus}
           onBlur={onBlur}
+          className='text-field-width'
           />
            <label htmlFor="filter">Search Todo</label>
            <span className='search-counter '>{matchCount}</span>

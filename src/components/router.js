@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
+
 
 import NavBar from './NavBar';
 import Todo from './Todo';
@@ -11,14 +11,9 @@ import NotFound from './NotFound';
 import FullPost from './FullPost';
 
 
-class MyRoute extends Component {
-  state = {
-    posts: [ {id: '1'}],
-  }
-  
-  render () {
+
+const MyRoute = () => {
   return (
-  <Provider store={this.state}>
     <Router>
       <Fragment>
         <NavBar />
@@ -36,9 +31,8 @@ class MyRoute extends Component {
          </div>
       </Fragment>
     </Router>
-  </Provider>
   ) 
-  }
+  
 }
 
 export default MyRoute;

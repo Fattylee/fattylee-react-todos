@@ -28,11 +28,10 @@ class AddTodo extends Component {
   render () {
     return (
       <Fragment>
-        <h5>New Todo</h5>
         <form onSubmit={this.handlSubmit}>
         <div className="input-field">
-         <i className="material-icons prefix">mode_edit</i>
-          <input type='text' id='content' name='content'  value={this.state.content}
+         <i className="material-icons prefix">add</i>
+          <input type='text' id='content' name='content'  value={this.state.content} className='text-field-width'
           onChange={this.handleChange}
           
           />
@@ -41,7 +40,6 @@ class AddTodo extends Component {
            onClick={() => this.setState(prevState => ({ content: ''}))}
            className='clear'><i className='material-icons'>clear</i></span>
           </div>
-          <button className="btn waves-effect waves-light btn-block" type="submit" name="action">Add Todo<i className="material-icons right">send</i> </button>
         </form>
       </Fragment>
     )
