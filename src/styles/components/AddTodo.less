@@ -1,4 +1,18 @@
-.btn-block {
-  width: 100%;
-  //display: block !important;
+@bg-primary: rgba(255,213,79,1);
+@media (max-width: 420px) {
+.pos-form-add, .pos-form-filter {
+  background: @bg-primary;
+  position: fixed;
+  width: 81%;
+  bottom: 0px;
+  z-index: 99;
+ // height: 60px;
+  //visibility: hidden;
+}
+.pos-form-filter {
+  bottom: auto;
+  top: -2px;
+  //display: none;
+}
+
 }

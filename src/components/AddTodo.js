@@ -28,6 +28,7 @@ class AddTodo extends Component {
   render () {
     return (
       <Fragment>
+      <div className='pos-form-add openSearchBox'>
         <form onSubmit={this.handlSubmit}>
         <div className="input-field">
          <i className="material-icons prefix">add</i>
@@ -41,6 +42,7 @@ class AddTodo extends Component {
            className='clear'><i className='material-icons'>clear</i></span>
           </div>
         </form>
+        </div>
       </Fragment>
     )
   }

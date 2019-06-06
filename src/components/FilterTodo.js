@@ -4,8 +4,11 @@ import React, { Fragment } from 'react';
 const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur }) => {
     return (
       <Fragment>
+      <div className='pos-form-filter'>
         <div className="input-field">
-         <i className="material-icons prefix">mode_edit</i>
+         <i 
+         onClick={closeSearchBox}
+         className="material-icons prefix">arrow_back</i>
           <input 
           type='text' 
           id='filter' 
@@ -24,8 +27,14 @@ const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, o
              className='clear'><i className='material-icons'>clear</i>
            </span>
           </div>
+          </div>
       </Fragment>
     )
+};
+
+const closeSearchBox = () => {
+  const closeSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
+ closeSearchBoxElement.forEach(e => e.style.visibility = 'visible');
 }
 
 
