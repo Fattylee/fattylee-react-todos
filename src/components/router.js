@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, HashRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../stores/store';
 
