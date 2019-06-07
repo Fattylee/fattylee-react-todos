@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "homepage" : "http://fattylee.github.io/fattylee-react-todos",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
