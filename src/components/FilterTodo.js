@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+//import { setFilterFocus } from '../actions/todoActions';
 
 
-const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur }) => {
+const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur, state }) => {
+  console.log('FilterTodo', state.isFocus);
     return (
       <Fragment>
       <div className='pos-form-filter'>
@@ -18,6 +21,7 @@ const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, o
           onFocus={onFocus}
           onBlur={onBlur}
           className='text-field-width'
+          autoFocus={state.isFocus}
           
           />
            <label htmlFor="filter">Search Todo</label>
@@ -38,5 +42,10 @@ const closeSearchBox = () => {
  closeSearchBoxElement.forEach(e => e.style.visibility = 'visible');
 }
 
+const mapStateToProps = (prevState, ownProps) => {
+  return {
+    state: prevState,
+  }
+};
 
-export default FilterTodo;
+export default connect(mapStateToProps)(FilterTodo);

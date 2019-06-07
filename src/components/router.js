@@ -23,7 +23,7 @@ const MyRoute = () => {
         <Switch>
         
         <Route exact path='/' component={Posts} />
-        <Route path='/post/:id' component={FullPost} />
+        <Route path='/post/:post_id' component={FullPost} />
         <Route  path='/todo' component={Todo} />
         <Route  path='/about' component={About} />
         <Route  path='/contact' component={Contact} />

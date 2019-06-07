@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setFilterFocus } from '../actions/todoActions';
+
 //import $ from '../../public/js/jquery-3.2.1.slim.min.js';
 
 
-const NavBar = ({state}) => {
-  const searchLink = state.searchBtn && <Link onClick={openSearchBox} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
+const NavBar = ({state, setFilterFocus}) => {
+  const searchLink = state.searchBtn && <Link onClick={openSearchBox.bind(null, setFilterFocus)} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
   return (
     <Fragment>
     <div className="navbar-fixed openSearchBox">
@@ -32,30 +34,34 @@ const NavBar = ({state}) => {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to='/todo'>Todo</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/post/34">Post-34</Link></li>
+          <li><Link to="/contact">Contact</Link></li>  
         </ul>
         
     </Fragment>
   ) 
 };
 
-const openSearchBox = (e) => {
+const openSearchBox = (setFilterFocus, e) => {
 
  console.log('NavBar');
  const openSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
  openSearchBoxElement.forEach(e => e.style.visibility = 'hidden');
  
- const tb = document.querySelector('.pos-form-filter').firstElementChild;
- tb.setAttribute('autoFocus', true);
- console.log(tb)
+ setTimeout(() => {
+   setFilterFocus();
+ }, 1000);
+ 
+// const tb = document.querySelector('.pos-form-filter').firstElementChild;
+ //tb.setAttribute('autoFocus', true);
+ //console.log(tb)
 };
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState
+    state: prevState,
   }
-}
+};
+const mapDispatchToProps = (dispatch) => ({ setFilterFocus()  {dispatch(setFilterFocus())}, });
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
 

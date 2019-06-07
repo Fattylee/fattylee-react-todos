@@ -32,6 +32,16 @@ export const postsReducer = (state=initState, action) => {
         ...state,
         searchBtn: false,
       };
+    case 'SET_FILTER_FOCUS':
+      return {
+        ...state,
+        isFocus: true,
+      };
+    case 'DELETE_A_POST':
+      return {
+        ...state,
+        posts: state.posts.filter(({id}) => id !== action.id),
+      }
     default:
       return state;
   }

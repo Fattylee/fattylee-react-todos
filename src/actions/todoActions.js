@@ -6,3 +6,5 @@ export const showSearchBtn = () => {
 
 export const hideSearchBtn = () => ({ type: 'HIDE_SEARCH_BUTTON' });
 
+export const setFilterFocus = () => ({ type: 'SET_FILTER_FOCUS' });
+
