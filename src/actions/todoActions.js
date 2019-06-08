@@ -30,6 +30,8 @@ export const updateSearchWord = (searchWord) => {
 
 export const clearAddTodoInput = () => ({ type: 'CLEAR_ADD_TODO_INPUT' });
 
+export const clearFilterTodoInput = () => ({ type: 'CLEAR_FILTER_TODO_INPUT' });
+
 export const addTodo = () => ({ type: 'ADD_TODO' });
 
 /*

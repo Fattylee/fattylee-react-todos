@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { setFilterFocus, updateSearchWord } from '../actions/todoActions';
+import { setFilterFocus, clearFilterTodoInput, updateSearchWord } from '../actions/todoActions';
 
 
-const FilterTodo = ({ clearFilter, matchCount, onFocus, onBlur, state, updateSearchWord }) => {
+const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clearFilterTodoInput }) => {
   
     return (
       <Fragment>
@@ -28,7 +28,7 @@ const FilterTodo = ({ clearFilter, matchCount, onFocus, onBlur, state, updateSea
            <span className='search-counter '>{matchCount}</span>
            
            <span 
-             onClick={clearFilter}
+             onClick={() => clearFilterTodoInput()}
              className='clear'><i className='material-icons'>clear</i>
            </span>
           </div>
@@ -51,6 +51,7 @@ const mapStateToProps = (prevState, ownProps) => {
 const mdtp = (dispatch, ownProps) => {
   return {
     updateSearchWord(searchWord) { dispatch(updateSearchWord(searchWord)) },
+    clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
   }
 }
 

@@ -38,6 +38,11 @@ const todosReducer = (prevState = initState, action) => {
         ...prevState,
         content: '',
       };
+    case 'CLEAR_FILTER_TODO_INPUT':
+      return {
+        ...prevState,
+        searchWord: '',
+      };
     case 'ADD_TODO':
       return {
         ...prevState,
