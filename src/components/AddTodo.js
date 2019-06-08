@@ -1,46 +1,44 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { updateContent, addTodo, clearAddTodoInput } from '../actions/todoActions';
 
 
-class AddTodo extends Component {
-  handleChange = (e) => {
-    const content = e.target.value;
-    this.props.updateContent(content);
-   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const { content } = this.props.state;
-      if(!content.trim()) {
-        this.props.clearAddTodoInput();
-        return;
-      }
-    this.props.addTodo();
-    this.props.clearAddTodoInput();
-  }
-  render () {
+const AddTodo = (props) => {
     return (
       <Fragment>
       <div className='pos-form-add openSearchBox'>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit.bind(null, props)}>
         <div className="input-field">
          <i className="material-icons prefix">add</i>
-          <input type='text' id='content' name='content'  value={this.props.state.content} className='text-field-width'
-          onChange={this.handleChange}
+          <input type='text' id='content' name='content'  value={props.state.content} className='text-field-width'
+          onChange={handleChange.bind(null, props)}
           
           />
            <label htmlFor="content">Add Todo</label>
            <span 
-           onClick={() => this.setState(prevState => ({ content: ''}))}
+           onClick={() => props.clearAddTodoInput() }
            className='clear'><i className='material-icons'>clear</i></span>
           </div>
         </form>
         </div>
       </Fragment>
     )
+};
+
+const handleChange = (props, e) => {
+  props.updateContent(e.target.value);
+};
+
+const handleSubmit = (props, e) => {
+  e.preventDefault();
+  
+  if(!props.state.content.trim()) {
+    props.clearAddTodoInput();      
+    return;
   }
-}
+  props.addTodo();
+  props.clearAddTodoInput();
+};
 
 const mstp = (prevState, ownProps) => {
   return {
