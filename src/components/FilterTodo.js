@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-//import { setFilterFocus } from '../actions/todoActions';
+import { setFilterFocus, updateSearchWord } from '../actions/todoActions';
 
 
-const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur, state }) => {
+const FilterTodo = ({ clearFilter, matchCount, onFocus, onBlur, state, updateSearchWord }) => {
   
     return (
       <Fragment>
@@ -16,8 +16,8 @@ const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, o
           type='text' 
           id='filter' 
           name='filter' 
-          value={searchWord}
-          onChange={filterTodo}
+          value={state.searchWord}
+          onChange={(e) => updateSearchWord(e.target.value)}
           onFocus={onFocus}
           onBlur={onBlur}
           className='text-field-width'
@@ -44,8 +44,14 @@ const closeSearchBox = () => {
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState,
+    state: prevState.todosStore,
   }
 };
 
-export default connect(mapStateToProps)(FilterTodo);
+const mdtp = (dispatch, ownProps) => {
+  return {
+    updateSearchWord(searchWord) { dispatch(updateSearchWord(searchWord)) },
+  }
+}
+
+export default connect(mapStateToProps, mdtp)(FilterTodo);

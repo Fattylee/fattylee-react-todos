@@ -8,22 +8,6 @@ import { toggleSearchBtn } from '../actions/todoActions';
 
 class Todo extends Component {
   
-  state = {
-    todos: [
-      { id: '1', content: 'read the quran' },
-      { id: '2', content: 'visit a shopping mall' },
-    ],
-    searchWord: '',
-  }
-  
-  
-  filterTodo = (e) => {
-    const searchWord = e.target.value;
-    
-    this.setState(prevState => ({
-      searchWord,
-    }));
-  }
   clearFilter = (e) => {
     e.target.value = '';
     this.setState(prevState => ({
@@ -75,9 +59,7 @@ class Todo extends Component {
          <AddTodo />
          
          <FilterTodo 
-           filterTodo={this.filterTodo} 
-           clearFilter={this.clearFilter} 
-           searchWord={this.state.searchWord}
+           clearFilter={this.clearFilter}  
            matchCount={filteredTodos.length} 
            onFocus={this.onFocus}
            onBlur={this.onBlur}
