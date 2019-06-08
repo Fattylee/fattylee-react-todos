@@ -1,3 +1,6 @@
+import uuid from 'uuid';
+
+
 const initState = {
   todos: [
     { id: '1', content: 'read the quran' },
@@ -18,6 +21,16 @@ const todosReducer = (prevState = initState, action) => {
       return {
         ...prevState,
         content: action.content,
+      };
+    case 'CLEAR_ADD_TODO_INPUT':
+      return {
+        ...prevState,
+        content: '',
+      };
+    case 'ADD_TODO':
+      return {
+        ...prevState,
+        todos: [{ id: uuid(), content: prevState.content.trim() }, ...prevState.todos],
       };
     default:
       return prevState;

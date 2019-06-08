@@ -22,3 +22,7 @@ export const updateContent = (content) => {
   };
 };
 
+export const clearAddTodoInput = () => ({ type: 'CLEAR_ADD_TODO_INPUT' });
+
+export const addTodo = () => ({ type: 'ADD_TODO' });
+

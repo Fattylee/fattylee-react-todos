@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import FilterTodo from './FilterTodo';
@@ -17,13 +16,7 @@ class Todo extends Component {
     searchWord: '',
   }
   
-  addTodo = (content) => {
-
-    this.setState(prevState => ({
-      todos: [{id: uuid(), content }, ...prevState.todos],
-      searchWord: '',
-    }));
-  }
+  
   filterTodo = (e) => {
     const searchWord = e.target.value;
     

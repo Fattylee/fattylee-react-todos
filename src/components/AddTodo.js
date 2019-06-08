@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { updateContent } from '../actions/todoActions';
+import { updateContent, addTodo, clearAddTodoInput } from '../actions/todoActions';
 
 
 class AddTodo extends Component {
@@ -8,25 +8,22 @@ class AddTodo extends Component {
     const content = e.target.value;
     this.props.updateContent(content);
    }
-  handlSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { content } = this.state;
+    
+    const { content } = this.props.state;
       if(!content.trim()) {
-        this.setState((prevState) => ({
-        content: '',
-        }));
+        this.props.clearAddTodoInput();
         return;
       }
-    this.props.addTodo(content.trim());
-    this.setState((prevState) => ({
-    content: '',
-    }));     
+    this.props.addTodo();
+    this.props.clearAddTodoInput();
   }
   render () {
     return (
       <Fragment>
       <div className='pos-form-add openSearchBox'>
-        <form onSubmit={this.handlSubmit}>
+        <form onSubmit={this.handleSubmit}>
         <div className="input-field">
          <i className="material-icons prefix">add</i>
           <input type='text' id='content' name='content'  value={this.props.state.content} className='text-field-width'
@@ -54,6 +51,8 @@ const mstp = (prevState, ownProps) => {
 const mdtp = (dispatch, ownProps) => {
   return {
     updateContent(content) { dispatch(updateContent(content)) },
+    clearAddTodoInput() { dispatch(clearAddTodoInput()) },
+    addTodo() { dispatch(addTodo()) },
   };
 };
 
