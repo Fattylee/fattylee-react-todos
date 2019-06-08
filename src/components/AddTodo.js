@@ -4,9 +4,10 @@ import { updateContent, addTodo, clearAddTodoInput } from '../actions/todoAction
 
 
 const AddTodo = (props) => {
+  
     return (
       <Fragment>
-      <div className='pos-form-add openSearchBox'>
+      <div className={props.state.isVisible ? 'pos-form-add': 'pos-form-add open-search-box'}>
         <form onSubmit={handleSubmit.bind(null, props)}>
         <div className="input-field">
          <i className="material-icons prefix">add</i>

@@ -9,6 +9,7 @@ const initState = {
     searchWord: '',
     content: '',
     searchBtn: false,
+    isVisible: true,
 };
 
 const todosReducer = (prevState = initState, action) => {
@@ -47,6 +48,11 @@ const todosReducer = (prevState = initState, action) => {
       return {
         ...prevState,
         todos: [{ id: uuid(), content: prevState.content.trim() }, ...prevState.todos],
+      };
+    case 'TOGGLE_VISIBILITY':
+      return {
+        ...prevState,
+        isVisible: action.visibility,
       };
     default:
       return prevState;

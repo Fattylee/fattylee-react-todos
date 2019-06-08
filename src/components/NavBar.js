@@ -1,14 +1,23 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setFilterFocus } from '../actions/todoActions';
+import { setFilterFocus, toggleVisibility } from '../actions/todoActions';
 
 
-const NavBar = ({state, setFilterFocus}) => {
-  const searchLink = state.searchBtn && <Link onClick={openSearchBox.bind(null, setFilterFocus)} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
+const NavBar = ({state, setFilterFocus, toggleVisibility }) => {
+  const searchLink = state.searchBtn && (
+  <Link 
+    onClick={() => {
+      toggleVisibility(false);
+    }} 
+    to="#" 
+    className="hide-on-med-and-up right">
+    <i className="material-icons">search</i>
+  </Link>);
+  
   return (
     <Fragment>
-    <div className="navbar-fixed openSearchBox">
+    <div className={ state.isVisible ? 'navbar-fixed' : "navbar-fixed open-search-box" }>
       <nav>
       <div className="nav-wrapper teal">
         <div className='container'>
@@ -38,7 +47,7 @@ const NavBar = ({state, setFilterFocus}) => {
     </Fragment>
   ) 
 };
-
+/*
 const openSearchBox = (setFilterFocus, e) => {
 
  console.log('NavBar');
@@ -47,18 +56,18 @@ const openSearchBox = (setFilterFocus, e) => {
  
  setTimeout(() => {
    setFilterFocus();
- }, 1000);
- 
-// const tb = document.querySelector('.pos-form-filter').firstElementChild;
- //tb.setAttribute('autoFocus', true);
- //console.log(tb)
-};
-
+ }, 1000);};
+*/
 const mapStateToProps = (prevState, ownProps) => {
   return {
     state: prevState.todosStore,
   }
 };
-const mapDispatchToProps = (dispatch) => ({ setFilterFocus()  {dispatch(setFilterFocus())}, });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
+    setFilterFocus()  { dispatch(setFilterFocus())}, 
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

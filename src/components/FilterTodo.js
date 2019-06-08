@@ -1,16 +1,19 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { setFilterFocus, clearFilterTodoInput, updateSearchWord } from '../actions/todoActions';
+import { setFilterFocus, clearFilterTodoInput, updateSearchWord, toggleVisibility } from '../actions/todoActions';
 
 
-const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clearFilterTodoInput }) => {
+const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, }) => {
   
     return (
       <Fragment>
       <div className='pos-form-filter'>
         <div className="input-field">
          <i 
-         onClick={closeSearchBox}
+         onClick={() => {
+           toggleVisibility(true);
+           clearFilterTodoInput();
+         }}
          className="material-icons prefix">arrow_back</i>
           <input 
           type='text' 
@@ -21,7 +24,7 @@ const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clea
           onFocus={onFocus}
           onBlur={onBlur}
           className='text-field-width'
-          autoFocus={state.isFocus}
+          autoFocus={true || state.isFocus}
           
           />
            <label htmlFor="filter">Search Todo</label>
@@ -37,10 +40,6 @@ const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clea
     )
 };
 
-const closeSearchBox = () => {
-  const closeSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
- closeSearchBoxElement.forEach(e => e.style.visibility = 'visible');
-}
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
@@ -52,7 +51,8 @@ const mdtp = (dispatch, ownProps) => {
   return {
     updateSearchWord(searchWord) { dispatch(updateSearchWord(searchWord)) },
     clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
-  }
-}
+    toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
+  };
+};
 
 export default connect(mapStateToProps, mdtp)(FilterTodo);
