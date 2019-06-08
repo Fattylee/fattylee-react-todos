@@ -16,11 +16,7 @@ class Todo extends Component {
     ],
     searchWord: '',
   }
-  deleteTodo = (id) => {
-    this.setState((prevState) => ({
-      todos: prevState.todos.filter(({id: todoId}) => id !== todoId),
-    }));
-  }
+  
   addTodo = (content) => {
 
     this.setState(prevState => ({
@@ -78,7 +74,7 @@ class Todo extends Component {
   }
   render () {
    // console.log('render');
-    const filteredTodos = this.state.todos.filter(({content}) => content.toLowerCase().includes(this.state.searchWord.toLowerCase()) );
+    const filteredTodos = this.props.state.todos.filter(({content}) => content.toLowerCase().includes(this.props.state.searchWord.toLowerCase()) );
     
     return (
       <Fragment>
@@ -97,7 +93,7 @@ class Todo extends Component {
            onBlur={this.onBlur}
          />
          
-         <TodoList todos={filteredTodos} deleteTodo={this.deleteTodo} />
+         <TodoList todos={filteredTodos}  />
         </div>
       </Fragment>
     )
@@ -111,5 +107,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Todo);
+const mstp = (prevState, ownProps) => {
+  return {
+    state: prevState.todosStore,
+  }
+}
+export default connect(mstp, mapDispatchToProps)(Todo);
 

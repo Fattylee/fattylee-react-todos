@@ -6,10 +6,15 @@ const initState = {
     searchWord: '',
 };
 
-const todosReducer = (state = initState, action) => {
+const todosReducer = (prevState = initState, action) => {
   switch(action.type) {
+    case 'DELETE_TODO':
+      return {
+        ...prevState,
+        todos: prevState.todos.filter(({ id }) => id !== action.id),
+      };
     default:
-      return state;
+      return prevState;
   }
 };
 

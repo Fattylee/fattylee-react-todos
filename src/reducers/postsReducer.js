@@ -20,30 +20,30 @@ const initState = {
   searchBtn: false,
 };
 
-const postsReducer = (state=initState, action) => {
+const postsReducer = (prevState=initState, action) => {
   switch(action.type) {
     case 'SHOW_SEARCH_BUTTON':
       return {
-        ...state,
+        ...prevState,
         searchBtn: true,
       };
     case 'HIDE_SEARCH_BUTTON':
       return {
-        ...state,
+        ...prevState,
         searchBtn: false,
       };
     case 'SET_FILTER_FOCUS':
       return {
-        ...state,
+        ...prevState,
         isFocus: true,
       };
     case 'DELETE_A_POST':
       return {
-        ...state,
-        posts: state.posts.filter(({id}) => id !== action.id),
+        ...prevState,
+        posts: prevState.posts.filter(({id}) => id !== action.id),
       }
     default:
-      return state;
+      return prevState;
   }
 };
 

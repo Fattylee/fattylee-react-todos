@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../actions/todoActions';
 
 
 const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
@@ -7,9 +9,7 @@ const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
        <div>
          <span className='bold'>{counter}</span>. {content}
        <a 
-       onClick={() => {
-         deleteTodo(id);
-       }}
+       onClick={() => deleteTodo(id) }
        className="secondary-content">
        <i className="material-icons">delete</i>
        </a>
@@ -18,4 +18,12 @@ const TodoItem = ({ todo: {content, id}, deleteTodo, counter }) => {
     )
 }
 
-export default TodoItem;
+const mdtp = (dispatch, ownProps) => {
+  return {
+    deleteTodo(id) { dispatch(deleteTodo(id)) },
+  };
+};
+
+
+export default connect(null, mdtp)(TodoItem);
+

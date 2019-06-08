@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 
 const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur, state }) => {
-  console.log('FilterTodo', state.isFocus);
+  
     return (
       <Fragment>
       <div className='pos-form-filter'>

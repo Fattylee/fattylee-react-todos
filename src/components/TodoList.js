@@ -2,9 +2,9 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 
-const TodoList = ({ todos, deleteTodo }) => {
+const TodoList = ({ todos }) => {
   const todoList = todos.length ? (
-    todos.map( (todo, i) => <TodoItem key={todo.id} todo={todo} counter={++i} deleteTodo={deleteTodo} />))
+    todos.map( (todo, i) => <TodoItem key={todo.id} todo={todo} counter={++i}  />))
    : (<li className="collection-header"><h4>Your list of todos is empty. <a className="waves-effect waves-light btn-small"><i className='material-icons left'>note_add</i>Add todo</a></h4></li>);
   
   return (

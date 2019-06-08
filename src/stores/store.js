@@ -4,10 +4,10 @@ import rootReducer  from '../reducers/rootReducer';
 const store = createStore(rootReducer);
 store.subscribe(() => {
   const state = store.getState();
-  console.log('store', state);
+  console.log('store state', state);
+  console.log('==================');
 });
 
-store.dispatch({type: 'GET_STATE', });
 
 export default store;
 
