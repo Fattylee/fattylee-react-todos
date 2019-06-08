@@ -1,10 +1,9 @@
-export const showSearchBtn = () => {
+export const toggleSearchBtn = (visibility) => {
   return {
-    type: 'SHOW_SEARCH_BUTTON',
+    type: 'TOGGLE_SEARCH_BUTTON',
+    visibility,
   }
 };
-
-export const hideSearchBtn = () => ({ type: 'HIDE_SEARCH_BUTTON' });
 
 export const setFilterFocus = () => ({ type: 'SET_FILTER_FOCUS' });
 
@@ -25,4 +24,8 @@ export const updateContent = (content) => {
 export const clearAddTodoInput = () => ({ type: 'CLEAR_ADD_TODO_INPUT' });
 
 export const addTodo = () => ({ type: 'ADD_TODO' });
+
+/*
+export const hideSearchBtn = () => ({ type: 'HIDE_SEARCH_BUTTON' });
+*/
 

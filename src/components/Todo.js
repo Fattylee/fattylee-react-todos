@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import FilterTodo from './FilterTodo';
-import { showSearchBtn, hideSearchBtn } from '../actions/todoActions';
+import { toggleSearchBtn } from '../actions/todoActions';
 
 
 class Todo extends Component {
@@ -39,7 +39,7 @@ class Todo extends Component {
   }
   componentDidMount() {
     const ls = window.localStorage;
-    //console.log('componentDidMount');
+    
     const todosExist = ls.getItem('todos');
     if(todosExist) {
       const todos = JSON.parse(todosExist);
@@ -51,22 +51,19 @@ class Todo extends Component {
       const todosStringified = JSON.stringify(todos);
       ls.setItem('todos', todosStringified);
     }
-    const { showSearchBtn } = this.props;
-    showSearchBtn();
+    
+    this.props.toggleSearchBtn(true);
   }
   componentWillUnmount() {
-    console.log('componentWillUnmount');
-    const { hideSearchBtn } = this.props;
-    hideSearchBtn();
+    this.props.toggleSearchBtn(false);
   }
   componentDidUpdate(prevProp, prevState) {
     const ls = window.localStorage;
     const todosStringified = JSON.stringify(this.state.todos);
     ls.setItem('todos', todosStringified );
-    //console.log('componentDidUpdate');
+   
   }
   render () {
-   // console.log('render');
     const filteredTodos = this.props.state.todos.filter(({content}) => content.toLowerCase().includes(this.props.state.searchWord.toLowerCase()) );
     
     return (
@@ -95,8 +92,8 @@ class Todo extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showSearchBtn() { dispatch(showSearchBtn()) },
-    hideSearchBtn() { dispatch(hideSearchBtn()) },
+    toggleSearchBtn(visibility) { dispatch(toggleSearchBtn(visibility)) },
+    
   };
 };
 

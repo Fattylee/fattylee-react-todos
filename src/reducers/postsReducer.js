@@ -17,21 +17,10 @@ const initState = {
       },
     ],
   isFocus: false,
-  searchBtn: false,
 };
 
 const postsReducer = (prevState=initState, action) => {
   switch(action.type) {
-    case 'SHOW_SEARCH_BUTTON':
-      return {
-        ...prevState,
-        searchBtn: true,
-      };
-    case 'HIDE_SEARCH_BUTTON':
-      return {
-        ...prevState,
-        searchBtn: false,
-      };
     case 'SET_FILTER_FOCUS':
       return {
         ...prevState,

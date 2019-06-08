@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setFilterFocus } from '../actions/todoActions';
 
-//import $ from '../../public/js/jquery-3.2.1.slim.min.js';
-
 
 const NavBar = ({state, setFilterFocus}) => {
   const searchLink = state.searchBtn && <Link onClick={openSearchBox.bind(null, setFilterFocus)} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
@@ -58,10 +56,9 @@ const openSearchBox = (setFilterFocus, e) => {
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState,
+    state: prevState.todosStore,
   }
 };
 const mapDispatchToProps = (dispatch) => ({ setFilterFocus()  {dispatch(setFilterFocus())}, });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
-

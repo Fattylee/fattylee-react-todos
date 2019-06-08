@@ -8,10 +8,16 @@ const initState = {
   ],
     searchWord: '',
     content: '',
+    searchBtn: false,
 };
 
 const todosReducer = (prevState = initState, action) => {
   switch(action.type) {
+    case 'TOGGLE_SEARCH_BUTTON':
+      return {
+        ...prevState,
+        searchBtn: action.visibility,
+      };
     case 'DELETE_TODO':
       return {
         ...prevState,
