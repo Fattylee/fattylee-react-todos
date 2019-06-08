@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import FilterTodo from './FilterTodo';
-import { toggleSearchBtn } from '../actions/todoActions';
+import { toggleSearchBtn, toggleVisibility } from '../actions/todoActions';
 
 
 class Todo extends Component {
@@ -40,6 +40,7 @@ class Todo extends Component {
   }
   componentWillUnmount() {
     this.props.toggleSearchBtn(false);
+    this.props.toggleVisibility(true);
   }
   componentDidUpdate(prevProp, prevState) {
     const ls = window.localStorage;
@@ -75,6 +76,7 @@ class Todo extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleSearchBtn(visibility) { dispatch(toggleSearchBtn(visibility)) },
+    toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
     
   };
 };

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { updateContent, addTodo, clearAddTodoInput } from '../actions/todoActions';
+import { updateContent, addTodo, clearAddTodoInput, clearFilterTodoInput } from '../actions/todoActions';
 
 
 const AddTodo = (props) => {
@@ -39,6 +39,7 @@ const handleSubmit = (props, e) => {
   }
   props.addTodo();
   props.clearAddTodoInput();
+  props.clearFilterTodoInput();
 };
 
 const mstp = (prevState, ownProps) => {
@@ -52,6 +53,7 @@ const mdtp = (dispatch, ownProps) => {
     updateContent(content) { dispatch(updateContent(content)) },
     clearAddTodoInput() { dispatch(clearAddTodoInput()) },
     addTodo() { dispatch(addTodo()) },
+    clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
   };
 };
 
