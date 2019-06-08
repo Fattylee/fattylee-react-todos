@@ -4,6 +4,7 @@ const initState = {
     { id: '2', content: 'visit a shopping mall' },
   ],
     searchWord: '',
+    content: '',
 };
 
 const todosReducer = (prevState = initState, action) => {
@@ -12,6 +13,11 @@ const todosReducer = (prevState = initState, action) => {
       return {
         ...prevState,
         todos: prevState.todos.filter(({ id }) => id !== action.id),
+      };
+    case 'UPDATE_CONTENT':
+      return {
+        ...prevState,
+        content: action.content,
       };
     default:
       return prevState;

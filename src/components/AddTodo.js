@@ -1,15 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { updateContent } from '../actions/todoActions';
 
 
 class AddTodo extends Component {
-  state = {
-    content: '',
-  }
   handleChange = (e) => {
     const content = e.target.value;
-    this.setState((prevState) => ({
-     content,
-     }));
+    this.props.updateContent(content);
    }
   handlSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +29,7 @@ class AddTodo extends Component {
         <form onSubmit={this.handlSubmit}>
         <div className="input-field">
          <i className="material-icons prefix">add</i>
-          <input type='text' id='content' name='content'  value={this.state.content} className='text-field-width'
+          <input type='text' id='content' name='content'  value={this.props.state.content} className='text-field-width'
           onChange={this.handleChange}
           
           />
@@ -48,4 +45,17 @@ class AddTodo extends Component {
   }
 }
 
-export default AddTodo;
+const mstp = (prevState, ownProps) => {
+  return {
+    state: prevState.todosStore,
+  };
+};
+
+const mdtp = (dispatch, ownProps) => {
+  return {
+    updateContent(content) { dispatch(updateContent(content)) },
+  };
+};
+
+export default connect(mstp, mdtp)(AddTodo);
+
