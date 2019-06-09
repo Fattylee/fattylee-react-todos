@@ -78,13 +78,29 @@ h1 {
 }
 
 .pa {
-  background: red;
+  //background: red;
   height: @square;
   width: @square;
+  position: relative;
+  margin: auto;
+  
+  div:nth-child(2) {
+    //background: yellow;
+    height: inherit;
+    line-height: @square;
+    //z-index: 5;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+  }
 }
 .pb {
-  background: pink;
- // width: 50px;
-  height: 230px;
+  background: transparent;
+  width: inherit;
+  height: inherit;
   border: 3px solid aqua;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 3px 0 0 #2D1F1F;
+  animation: rotate 1s linear infinite;
 }

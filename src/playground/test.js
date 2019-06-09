@@ -16,7 +16,7 @@ const App = () => {
       </div>
       <div className='pa'>
         <div className='pb'></div>
-       
+       <div>Loading...</div>
       </div>
       
     </div>
