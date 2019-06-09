@@ -56,3 +56,4 @@ const mdtp = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mdtp)(FilterTodo);
+

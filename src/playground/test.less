@@ -1,0 +1,90 @@
+h1 {
+  background: aqua;
+}
+
+@width: 200px;
+.hover-btn {
+ // padding: 10px 20px;
+ //line-height: $height;
+  //text-align: center;
+  
+  background: blue;
+  font-size: 2.5em;
+  color: #fff;
+  width: @width;
+  height: @width * 0.5;
+  margin: 20px auto;
+  position: relative;
+  
+  span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    
+    transition: 0.4s;
+  }
+  &:before {
+    content: attr(data-arrow);
+    font-size: 1em;
+    position: absolute;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 85%;
+    transition: 0.5s;
+  }
+  &:hover:before {
+    transform: translate(calc(-50% - 10px), -50%);
+    opacity: 1;
+  }
+  &:hover span {
+    transform: translate(calc(-50% - 10px), -50%);
+  }
+}
+
+@square: 200px;
+
+.parent {
+ //position: absolute;
+  top: 50%;
+  left: 50%;
+//  transform: translate(-50%, -50%);
+  width: @square;
+  height: @square;
+  background: pink;
+  margin: auto;
+  
+.loading {
+  background: brown;
+  border-radius: 50%;
+  box-shadow: 0 4px rgba(0,0,0,1);
+  //animation: rotate 1s linear infinite;
+  //position: absolute;
+}
+.loading + span {
+  //background: red;
+  height: @square;
+  width: @square;
+  position: absolute;
+  line-height: @square;
+  font-size: 2em;
+  text-align: center;
+}
+}
+@keyframes rotate {
+  from { transform: rotate(0deg)}
+  to { transform: rotate(360deg)}
+}
+
+.pa {
+  background: red;
+  height: @square;
+  width: @square;
+}
+.pb {
+  background: pink;
+ // width: 50px;
+  height: 230px;
+  border: 3px solid aqua;
+}

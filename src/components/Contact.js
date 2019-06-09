@@ -5,8 +5,8 @@ const Contact = (props) => {
   return (
     <Fragment>
       <h1 className='center'>Contact Page </h1>
-      <p>
-      You can reach me on 08062870354 or via fattylee.remod@gmail.com
+      <p contentEditable={false} spellCheck='true'>
+      You can reach me on <a href='#tel'>08062870354</a> or via fattylee.remod@gmail.com
       </p>
     </Fragment>
   ) 
