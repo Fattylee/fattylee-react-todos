@@ -24,8 +24,6 @@ const FilterTodo = ({ matchCount, state, updateSearchWord, clearFilterTodoInput,
           onFocus={() => { tsfcv(true); }}
           onBlur={() => tsfcv(false)}
           className='text-field-width'
-          autoFocus={true || state.isFocus}
-          
           />
            <label htmlFor="filter">Search Todo</label>
            <span className={state.isSeachFilterCounterVisible ? 'search-counter visible-counter' : 'search-counter'}>{matchCount}</span>
