@@ -8,19 +8,6 @@ import { toggleSearchBtn, toggleVisibility } from '../actions/todoActions';
 
 class Todo extends Component {
   
-  clearFilter = (e) => {
-    e.target.value = '';
-    this.setState(prevState => ({
-      searchWord: '',
-    }))
-  }
-  onFocus = (e) => {
-   e.target.nextElementSibling.nextElementSibling.classList.add('visibleCounter'); 
-    
-  }
-  onBlur = (e) => {
-     e.target.nextElementSibling.nextElementSibling.classList.remove('visibleCounter');   
-  }
   componentDidMount() {
     const ls = window.localStorage;
     
@@ -59,11 +46,8 @@ class Todo extends Component {
          
          <AddTodo />
          
-         <FilterTodo 
-           clearFilter={this.clearFilter}  
+         <FilterTodo  
            matchCount={filteredTodos.length} 
-           onFocus={this.onFocus}
-           onBlur={this.onBlur}
          />
          
          <TodoList todos={filteredTodos}  />

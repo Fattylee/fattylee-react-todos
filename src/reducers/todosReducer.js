@@ -10,6 +10,7 @@ const initState = {
     content: '',
     searchBtn: false,
     isVisible: true,
+    isSeachFilterCounterVisible: false,
 };
 
 const todosReducer = (prevState = initState, action) => {
@@ -53,6 +54,11 @@ const todosReducer = (prevState = initState, action) => {
       return {
         ...prevState,
         isVisible: action.visibility,
+      };
+    case 'TOGGLE_SEARCH_FILTER_COUNTER_VISIBILITY':
+      return {
+        ...prevState,
+        isSeachFilterCounterVisible: action.visibility,
       };
     default:
       return prevState;

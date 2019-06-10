@@ -38,7 +38,14 @@ export const toggleVisibility = (visibility) => {
   return {
     type: 'TOGGLE_VISIBILITY',
     visibility,
-  }
+  };
+};
+
+export const toggleSearchFilterCounterVisibility = (visibility) => {
+  return {
+    type: 'TOGGLE_SEARCH_FILTER_COUNTER_VISIBILITY',
+    visibility,
+  };
 };
 
 /*

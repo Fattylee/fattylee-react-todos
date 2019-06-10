@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { setFilterFocus, clearFilterTodoInput, updateSearchWord, toggleVisibility } from '../actions/todoActions';
+import { setFilterFocus, clearFilterTodoInput, updateSearchWord, toggleVisibility, toggleSearchFilterCounterVisibility as tsfcv } from '../actions/todoActions';
 
 
-const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, }) => {
+const FilterTodo = ({ matchCount, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, tsfcv }) => {
   
     return (
       <Fragment>
@@ -21,14 +21,14 @@ const FilterTodo = ({ matchCount, onFocus, onBlur, state, updateSearchWord, clea
           name='filter' 
           value={state.searchWord}
           onChange={(e) => updateSearchWord(e.target.value)}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onFocus={() => { tsfcv(true); }}
+          onBlur={() => tsfcv(false)}
           className='text-field-width'
           autoFocus={true || state.isFocus}
           
           />
            <label htmlFor="filter">Search Todo</label>
-           <span className='search-counter '>{matchCount}</span>
+           <span className={state.isSeachFilterCounterVisible ? 'search-counter visible-counter' : 'search-counter'}>{matchCount}</span>
            
            <span 
              onClick={() => clearFilterTodoInput()}
@@ -52,6 +52,7 @@ const mdtp = (dispatch, ownProps) => {
     updateSearchWord(searchWord) { dispatch(updateSearchWord(searchWord)) },
     clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
     toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
+    tsfcv(visibility) { dispatch(tsfcv(visibility)) },
   };
 };
 
