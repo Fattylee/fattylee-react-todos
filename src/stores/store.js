@@ -1,11 +1,13 @@
 import { createStore } from 'redux';
 import rootReducer  from '../reducers/rootReducer';
 
+let count = 0;
 const store = createStore(rootReducer);
 store.subscribe(() => {
   const state = store.getState();
   console.log('store state', state);
-  console.log('==================');
+  count++;
+  console.log(`${count} ${count ===1 ? 'action':'actions'} dispatched ==================`);
 });
 
 
