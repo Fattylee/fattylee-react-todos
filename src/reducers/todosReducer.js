@@ -60,6 +60,11 @@ const todosReducer = (prevState = initState, action) => {
         ...prevState,
         isSeachFilterCounterVisible: action.visibility,
       };
+    case 'LOAD_TODOS':
+      return {
+        ...prevState,
+        todos: action.todos,
+      }
     default:
       return prevState;
   }

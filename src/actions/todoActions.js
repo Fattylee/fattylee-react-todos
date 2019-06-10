@@ -48,6 +48,13 @@ export const toggleSearchFilterCounterVisibility = (visibility) => {
   };
 };
 
+export const loadTodos = (todos) => {
+  return {
+    type: 'LOAD_TODOS',
+    todos,
+  };
+};
+
 /*
 export const hideSearchBtn = () => ({ type: 'HIDE_SEARCH_BUTTON' });
 */
