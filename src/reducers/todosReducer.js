@@ -11,6 +11,7 @@ const initState = {
     searchBtn: false,
     isVisible: true,
     isSeachFilterCounterVisible: false,
+    filterInput: undefined,
 };
 
 const todosReducer = (prevState = initState, action) => {
@@ -64,7 +65,12 @@ const todosReducer = (prevState = initState, action) => {
       return {
         ...prevState,
         todos: action.todos,
-      }
+      };
+    case 'SET_FILTER_INPUT':
+      return {
+        ...prevState,
+        filterInput: action.filterInput,
+      };
     default:
       return prevState;
   }

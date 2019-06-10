@@ -1,15 +1,18 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setFilterFocus, toggleVisibility } from '../actions/todoActions';
+import { toggleVisibility } from '../actions/todoActions';
 
 
-const NavBar = ({state, setFilterFocus, toggleVisibility }) => {
+const NavBar = (props) => {
+  const { state, toggleVisibility } = props;
   const searchLink = state.searchBtn && (
   <Link 
     onClick={() => {
       toggleVisibility(false);
-    }} 
+      state.filterInput.focus();
+    }}
+    
     to="#" 
     className="hide-on-med-and-up right">
     <i className="material-icons">search</i>
@@ -47,17 +50,7 @@ const NavBar = ({state, setFilterFocus, toggleVisibility }) => {
     </Fragment>
   ) 
 };
-/*
-const openSearchBox = (setFilterFocus, e) => {
 
- console.log('NavBar');
- const openSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
- openSearchBoxElement.forEach(e => e.style.visibility = 'hidden');
- 
- setTimeout(() => {
-   setFilterFocus();
- }, 1000);};
-*/
 const mapStateToProps = (prevState, ownProps) => {
   return {
     state: prevState.todosStore,
@@ -66,7 +59,7 @@ const mapStateToProps = (prevState, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
-    setFilterFocus()  { dispatch(setFilterFocus())}, 
+    
   };
 };
 

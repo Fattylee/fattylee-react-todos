@@ -1,10 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { setFilterFocus, clearFilterTodoInput, updateSearchWord, toggleVisibility, toggleSearchFilterCounterVisibility as tsfcv } from '../actions/todoActions';
+import { setFilterInput, clearFilterTodoInput, updateSearchWord, toggleVisibility, toggleSearchFilterCounterVisibility as tsfcv } from '../actions/todoActions';
 
 
-const FilterTodo = ({ matchCount, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, tsfcv }) => {
-  
+class FilterTodo extends Component {
+  componentDidMount() {
+    this.props.setFilterInput(this.inputField)
+  }
+  render() {
+    const { matchCount, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, tsfcv } = this.props;
     return (
       <Fragment>
       <div className='pos-form-filter'>
@@ -24,6 +28,7 @@ const FilterTodo = ({ matchCount, state, updateSearchWord, clearFilterTodoInput,
           onFocus={() => { tsfcv(true); }}
           onBlur={() => tsfcv(false)}
           className='text-field-width'
+          ref={(input) => { this.inputField = input }}
           />
            <label htmlFor="filter">Search Todo</label>
            <span className={state.isSeachFilterCounterVisible ? 'search-counter visible-counter' : 'search-counter'}>{matchCount}</span>
@@ -36,6 +41,7 @@ const FilterTodo = ({ matchCount, state, updateSearchWord, clearFilterTodoInput,
           </div>
       </Fragment>
     )
+    }
 };
 
 
@@ -51,6 +57,7 @@ const mdtp = (dispatch, ownProps) => {
     clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
     toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
     tsfcv(visibility) { dispatch(tsfcv(visibility)) },
+    setFilterInput(filterInput) { dispatch(setFilterInput(filterInput)) },
   };
 };
 
