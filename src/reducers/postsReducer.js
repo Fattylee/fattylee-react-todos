@@ -16,16 +16,10 @@ const initState = {
         body: 'Do you not know that to Allah belongs the dominion of the heavens and the earth and [that] you have not besides Allah any protector or any helper?'
       },
     ],
-  isFocus: false,
 };
 
 const postsReducer = (prevState=initState, action) => {
   switch(action.type) {
-    case 'SET_FILTER_FOCUS':
-      return {
-        ...prevState,
-        isFocus: true,
-      };
     case 'DELETE_A_POST':
       return {
         ...prevState,
