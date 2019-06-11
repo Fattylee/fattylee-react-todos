@@ -1,16 +1,27 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setFilterFocus } from '../actions/todoActions';
-
-//import $ from '../../public/js/jquery-3.2.1.slim.min.js';
+import { toggleVisibility } from '../actions/todoActions';
 
 
-const NavBar = ({state, setFilterFocus}) => {
-  const searchLink = state.searchBtn && <Link onClick={openSearchBox.bind(null, setFilterFocus)} to="#" className="hide-on-med-and-up right"><i className="material-icons">search</i></Link>
+const NavBar = (props) => {
+  const { state, toggleVisibility } = props;
+  const searchLink = state.searchBtn && (
+  <Link 
+    onClick={() => {
+      toggleVisibility(false);
+      state.filterInput.focus();
+      window.scrollTo({ top: 200,  behavior: 'smooth' });
+    }}
+    
+    to="#" 
+    className="hide-on-med-and-up right">
+    <i className="material-icons">search</i>
+  </Link>);
+  
   return (
     <Fragment>
-    <div className="navbar-fixed openSearchBox">
+    <div className={ state.isVisible ? 'navbar-fixed' : "navbar-fixed open-search-box" }>
       <nav>
       <div className="nav-wrapper teal">
         <div className='container'>
@@ -41,27 +52,16 @@ const NavBar = ({state, setFilterFocus}) => {
   ) 
 };
 
-const openSearchBox = (setFilterFocus, e) => {
-
- console.log('NavBar');
- const openSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
- openSearchBoxElement.forEach(e => e.style.visibility = 'hidden');
- 
- setTimeout(() => {
-   setFilterFocus();
- }, 1000);
- 
-// const tb = document.querySelector('.pos-form-filter').firstElementChild;
- //tb.setAttribute('autoFocus', true);
- //console.log(tb)
-};
-
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState,
+    state: prevState.todosStore,
   }
 };
-const mapDispatchToProps = (dispatch) => ({ setFilterFocus()  {dispatch(setFilterFocus())}, });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
+    
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
-

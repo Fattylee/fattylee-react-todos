@@ -1,51 +1,84 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { updateContent, addTodo, clearAddTodoInput, clearFilterTodoInput } from '../actions/todoActions';
 
 
-class AddTodo extends Component {
-  state = {
-    content: '',
-  }
-  handleChange = (e) => {
-    const content = e.target.value;
-    this.setState((prevState) => ({
-     content,
-     }));
-   }
-  handlSubmit = (e) => {
-    e.preventDefault();
-    const { content } = this.state;
-      if(!content.trim()) {
-        this.setState((prevState) => ({
-        content: '',
-        }));
-        return;
-      }
-    this.props.addTodo(content.trim());
-    this.setState((prevState) => ({
-    content: '',
-    }));     
-  }
-  render () {
-    return (
+let addInput;
+const AddTodo = (props) => { 
+  return (
       <Fragment>
-      <div className='pos-form-add openSearchBox'>
-        <form onSubmit={this.handlSubmit}>
+      <div className={props.state.isVisible ? 'pos-form-add': 'pos-form-add open-search-box'}>
+        <form onSubmit={handleSubmit.bind(null, props)}>
         <div className="input-field">
-         <i className="material-icons prefix">add</i>
-          <input type='text' id='content' name='content'  value={this.state.content} className='text-field-width'
-          onChange={this.handleChange}
-          
+         <i 
+         
+         className="material-icons prefix">add</i>
+          <input 
+          type='text' 
+          id='content' 
+          name='content' 
+          value={props.state.content} 
+          className='text-field-width'
+          onChange={handleChange.bind(null, props)}
+          onFocus={() => {
+            window.scrollTo({top: 200, behavior: 'smooth'}); 
+          }}
+          onBlur={() => {
+            window.scrollTo({top: 0, behavior: 'auto'}); 
+          }}
+          ref={(element) => {
+            addInput = element;
+          }}
           />
            <label htmlFor="content">Add Todo</label>
-           <span 
-           onClick={() => this.setState(prevState => ({ content: ''}))}
+           <span
+           onClick={() => {
+             props.clearAddTodoInput();
+             window.scrollTo({top: 200, behavior: 'auto'});
+             addInput.focus();
+           }}
            className='clear'><i className='material-icons'>clear</i></span>
           </div>
         </form>
         </div>
       </Fragment>
     )
-  }
-}
+    
+};
 
-export default AddTodo;
+
+const handleChange = (props, e) => {
+  props.updateContent(e.target.value);
+  
+};
+
+const handleSubmit = (props, e) => {
+  e.preventDefault();
+  
+  if(!props.state.content.trim()) {
+    props.clearAddTodoInput();      
+    return;
+  }
+  props.addTodo();
+  props.clearAddTodoInput();
+  props.clearFilterTodoInput();
+};
+
+const mstp = (prevState, ownProps) => {
+  return {
+    state: prevState.todosStore,
+  };
+};
+
+const mdtp = (dispatch, ownProps) => {
+  return {
+    updateContent(content) { dispatch(updateContent(content)) },
+    clearAddTodoInput() { dispatch(clearAddTodoInput()) },
+    addTodo() { dispatch(addTodo()) },
+    clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
+    
+  };
+};
+
+export default connect(mstp, mdtp)(AddTodo);
+

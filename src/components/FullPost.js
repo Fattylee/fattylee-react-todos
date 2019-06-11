@@ -33,7 +33,7 @@ const handleDeleteAPost = (props, id) => {
 };
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    posts: prevState.posts,
+    posts: prevState.postsStore.posts,
   }
 };
 
@@ -45,4 +45,3 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FullPost);
-

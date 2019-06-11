@@ -1,13 +1,15 @@
 import { createStore } from 'redux';
-import { postsReducer } from '../reducers/rootReducer';
+import rootReducer  from '../reducers/rootReducer';
 
-const store = createStore(postsReducer);
+let count = 0;
+const store = createStore(rootReducer);
 store.subscribe(() => {
   const state = store.getState();
-  console.log('store', state);
+  console.log('store state', state);
+  count++;
+  console.log(`${count} ${count ===1 ? 'action':'actions'} dispatched ==================`);
 });
 
-store.dispatch({type: 'GET_STATE', });
 
 export default store;
 

@@ -1,51 +1,72 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-//import { setFilterFocus } from '../actions/todoActions';
+import { setFilterInput, clearFilterTodoInput, updateSearchWord, toggleVisibility, toggleSearchFilterCounterVisibility as tsfcv } from '../actions/todoActions';
 
 
-const FilterTodo = ({filterTodo, clearFilter, searchWord, matchCount, onFocus, onBlur, state }) => {
-  console.log('FilterTodo', state.isFocus);
+class FilterTodo extends Component {
+  componentDidMount() {
+    this.props.setFilterInput(this.inputField)
+  }
+  render() {
+    const { matchCount, state, updateSearchWord, clearFilterTodoInput, toggleVisibility, tsfcv } = this.props;
     return (
       <Fragment>
       <div className='pos-form-filter'>
         <div className="input-field">
          <i 
-         onClick={closeSearchBox}
+         onClick={() => {
+           toggleVisibility(true);
+           clearFilterTodoInput();
+           window.scrollTo(0, 0);
+         }}
          className="material-icons prefix">arrow_back</i>
           <input 
           type='text' 
           id='filter' 
           name='filter' 
-          value={searchWord}
-          onChange={filterTodo}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          value={state.searchWord}
+          onChange={(e) => updateSearchWord(e.target.value)}
+          onFocus={() => { 
+          tsfcv(true); 
+          window.scrollTo({ top: 200,  behavior: 'smooth' });
+          }}
+          onBlur={() => tsfcv(false)}
           className='text-field-width'
-          autoFocus={state.isFocus}
-          
+          ref={(input) => { this.inputField = input }}
           />
            <label htmlFor="filter">Search Todo</label>
-           <span className='search-counter '>{matchCount}</span>
+           <span className={state.isSeachFilterCounterVisible ? 'search-counter visible-counter' : 'search-counter'}>{matchCount}</span>
            
            <span 
-             onClick={clearFilter}
+             onClick={() => {
+               clearFilterTodoInput();
+               state.filterInput.focus();
+             }}
              className='clear'><i className='material-icons'>clear</i>
            </span>
           </div>
           </div>
       </Fragment>
     )
+    }
 };
 
-const closeSearchBox = () => {
-  const closeSearchBoxElement = window.document.querySelectorAll('.openSearchBox');
- closeSearchBoxElement.forEach(e => e.style.visibility = 'visible');
-}
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState,
+    state: prevState.todosStore,
   }
 };
 
-export default connect(mapStateToProps)(FilterTodo);
+const mdtp = (dispatch, ownProps) => {
+  return {
+    updateSearchWord(searchWord) { dispatch(updateSearchWord(searchWord)) },
+    clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
+    toggleVisibility(visibility) { dispatch(toggleVisibility(visibility)) },
+    tsfcv(visibility) { dispatch(tsfcv(visibility)) },
+    setFilterInput(filterInput) { dispatch(setFilterInput(filterInput)) },
+  };
+};
+
+export default connect(mapStateToProps, mdtp)(FilterTodo);
+

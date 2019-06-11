@@ -14,7 +14,7 @@ const Posts = ({state}) => {
     
     (
     <Fragment>
-        <h1 className='center'>No POST yet!... </h1>
+        <h1 className='center'>No POST found!... </h1>
       </Fragment>
     );
     return (posts) 
@@ -22,8 +22,9 @@ const Posts = ({state}) => {
 
 const mapStateToProps = (prevState, ownProps) => {
   return {
-    state: prevState,
+    state: prevState.postsStore,
   }
 }
 
 export default connect(mapStateToProps)(Posts);
+
