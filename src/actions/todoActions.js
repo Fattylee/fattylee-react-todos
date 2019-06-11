@@ -59,8 +59,9 @@ export const setFilterInput = (filterInput) => {
   return {
     type: 'SET_FILTER_INPUT',
     filterInput,
-  }
-}
+  };
+};
+
 
 /*
 export const hideSearchBtn = () => ({ type: 'HIDE_SEARCH_BUTTON' });

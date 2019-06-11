@@ -38,7 +38,10 @@ class FilterTodo extends Component {
            <span className={state.isSeachFilterCounterVisible ? 'search-counter visible-counter' : 'search-counter'}>{matchCount}</span>
            
            <span 
-             onClick={() => clearFilterTodoInput()}
+             onClick={() => {
+               clearFilterTodoInput();
+               state.filterInput.focus();
+             }}
              className='clear'><i className='material-icons'>clear</i>
            </span>
           </div>

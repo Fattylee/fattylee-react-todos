@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateContent, addTodo, clearAddTodoInput, clearFilterTodoInput } from '../actions/todoActions';
 
 
+let addInput;
 const AddTodo = (props) => { 
   return (
       <Fragment>
@@ -25,11 +26,17 @@ const AddTodo = (props) => {
           onBlur={() => {
             window.scrollTo({top: 0, behavior: 'auto'}); 
           }}
-          
+          ref={(element) => {
+            addInput = element;
+          }}
           />
            <label htmlFor="content">Add Todo</label>
            <span
-           onClick={() => props.clearAddTodoInput() }
+           onClick={() => {
+             props.clearAddTodoInput();
+             window.scrollTo({top: 200, behavior: 'auto'});
+             addInput.focus();
+           }}
            className='clear'><i className='material-icons'>clear</i></span>
           </div>
         </form>
@@ -69,6 +76,7 @@ const mdtp = (dispatch, ownProps) => {
     clearAddTodoInput() { dispatch(clearAddTodoInput()) },
     addTodo() { dispatch(addTodo()) },
     clearFilterTodoInput() { dispatch(clearFilterTodoInput()) },
+    
   };
 };
 
