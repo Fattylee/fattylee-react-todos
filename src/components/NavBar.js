@@ -11,6 +11,7 @@ const NavBar = (props) => {
     onClick={() => {
       toggleVisibility(false);
       state.filterInput.focus();
+      window.scrollTo({ top: 200,  behavior: 'smooth' });
     }}
     
     to="#" 

@@ -12,8 +12,19 @@ const AddTodo = (props) => {
          <i 
          
          className="material-icons prefix">add</i>
-          <input type='text' id='content' name='content' value={props.state.content} className='text-field-width'
+          <input 
+          type='text' 
+          id='content' 
+          name='content' 
+          value={props.state.content} 
+          className='text-field-width'
           onChange={handleChange.bind(null, props)}
+          onFocus={() => {
+            window.scrollTo({top: 200, behavior: 'smooth'}); 
+          }}
+          onBlur={() => {
+            window.scrollTo({top: 0, behavior: 'auto'}); 
+          }}
           
           />
            <label htmlFor="content">Add Todo</label>

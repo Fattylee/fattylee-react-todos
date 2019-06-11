@@ -17,6 +17,7 @@ class FilterTodo extends Component {
          onClick={() => {
            toggleVisibility(true);
            clearFilterTodoInput();
+           window.scrollTo(0, 0);
          }}
          className="material-icons prefix">arrow_back</i>
           <input 
@@ -25,7 +26,10 @@ class FilterTodo extends Component {
           name='filter' 
           value={state.searchWord}
           onChange={(e) => updateSearchWord(e.target.value)}
-          onFocus={() => { tsfcv(true); }}
+          onFocus={() => { 
+          tsfcv(true); 
+          window.scrollTo({ top: 200,  behavior: 'smooth' });
+          }}
           onBlur={() => tsfcv(false)}
           className='text-field-width'
           ref={(input) => { this.inputField = input }}
